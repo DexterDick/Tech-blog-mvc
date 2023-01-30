@@ -40,6 +40,9 @@ header {
 
 nav {
   display: flex;
+}
+nav,
+.signup-section {
   gap: 3rem;
   width: 90%;
   margin: 0 auto;
@@ -64,4 +67,24 @@ button {
 .login-section {
   width: 80%;
   margin: 0 auto;
+}
+
+article {
+  margin: 2rem 0;
+  border: 2px solid black;
+}
+.title,
+.date {
+  color: white;
+}
+
+article .top {
+  display: flex;
+  justify-content: space-between;
+  background-color: black;
+  padding: 1rem;
+}
+
+article .bottom {
+  padding: 1rem;
 }
