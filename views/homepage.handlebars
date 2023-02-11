@@ -2,7 +2,7 @@
 {{#each blogs as |blog|}}
   <article>
     <div class='top'>
-      <h3 class='title'><a href='/blog/{{blog.id}}'></a></h3>
+      <h3 class='title'><a href='/blog/{{blog.id}}'>{{blog.title}}</a></h3>
       <p class='date'>
         Posted by
         {{blog.user.username}}
@@ -16,5 +16,3 @@
 
   </article>
 {{/each}}
-
-<a href='/createpost' class='newpost'>+ New Post</a>
