@@ -32,17 +32,25 @@ body {
 
 h1 {
   font-size: var(--font-size-3);
+  background-color: var(--color-green);
+  width: max-content;
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+  margin-bottom: 3px;
 }
 
 header {
   background-color: black;
+  padding: 2rem;
 }
 
 nav {
   display: flex;
+  gap: 2rem;
 }
-nav,
-.signup-section {
+.signup-section,
+.login-section {
   gap: 3rem;
   width: 90%;
   margin: 0 auto;
@@ -52,7 +60,17 @@ nav,
 form {
   display: flex;
   flex-direction: column;
+  border: 2px solid black;
+  padding: 2rem;
 }
+
+.form-heading {
+  background-color: black;
+  color: white;
+  /* margin-top: 3rem; */
+  padding: 1rem 0 1rem 2rem;
+}
+
 input,
 button {
   width: 100%;
@@ -83,6 +101,22 @@ article .top {
   justify-content: space-between;
   background-color: black;
   padding: 1rem;
+}
+.newpost {
+  display: inline-block;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  text-align: center;
+  background-color: black;
+  color: white;
+  padding: 1rem 2rem;
+
+  border-radius: 4px;
+  text-align: center;
 }
 
 article .bottom {
