@@ -16,11 +16,11 @@ router.get('/', async (req, res) => {
 
     // serialize data
     const blogs = blogData.map((blog) => blog.get({ plain: true }));
-    // console.log(...blogs);
 
     res.render('homepage', {
       blogs,
       logged_in: req.session.logged_in,
+      page: 'The Tech Blog',
     });
   } catch (err) {
     res.status(500).json(err);
@@ -37,11 +37,39 @@ router.get('/dashboard', withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
+    console.log(user);
     res.render('dashboard', {
       ...user,
       logged_in: true,
+      page: 'Your Dashboard',
     });
   } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/blog/:id', async (req, res) => {
+  try {
+    const blogData = await Blog.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+        {
+          model: Comment,
+          attributes: ['commentText', 'date', 'user_id'],
+          include: [{ model: User, attributes: ['username'] }],
+        },
+      ],
+    });
+    const blog = blogData.get({ plain: true });
+    res.render('singleblog', {
+      ...blog,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
@@ -51,11 +79,16 @@ router.get('/login', (req, res) => {
     res.redirect('/dashboard');
     return;
   }
-  res.render('login');
+  res.render('login', { page: 'The Tech Blog' });
 });
 
 router.get('/signup', (req, res) => {
-  res.render('signup');
+  if (req.session.logged_in) {
+    res.redirect('/dashboard');
+    return;
+  }
+
+  res.render('signup', { page: 'The Tech Blog' });
 });
 
 module.exports = router;
