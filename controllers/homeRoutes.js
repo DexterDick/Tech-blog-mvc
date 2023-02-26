@@ -58,15 +58,17 @@ router.get('/blog/:id', async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ['commentText', 'date', 'user_id'],
+          attributes: ['comment_text', 'date', 'user_id'],
           include: [{ model: User, attributes: ['username'] }],
         },
       ],
     });
     const blog = blogData.get({ plain: true });
+    console.log(blog);
     res.render('singleblog', {
       ...blog,
       logged_in: req.session.logged_in,
+      page: 'The Tech Blog',
     });
   } catch (err) {
     console.log(err);
@@ -89,6 +91,10 @@ router.get('/signup', (req, res) => {
   }
 
   res.render('signup', { page: 'The Tech Blog' });
+});
+
+router.get('/createpost', (req, res) => {
+  res.render('createpost');
 });
 
 module.exports = router;

@@ -1,11 +1,24 @@
 <section class='comment-section'>
-  <div class='form-heading'>
-    <h3>{{title}}</h3>
-  </div>
+  <article>
+    <div class='top'>
+      <h3 class='title'><a href='/blog/{{blog.id}}'>{{title}}</a></h3>
+      <p class='date'>
+        Posted by
+        {{user.username}}
+        on
+        {{format_date date}}
+      </p>
+    </div>
+    <div class='bottom'>
+      <p>{{content}}</p>
+    </div>
+
+  </article>
   <div class='form-wrapper'>
+    <form class='new-comment-form' data-blogid='{{blog.id}}'>
 
-    <form class='new-comment-form'>
-
+      <div class='form-header'></div>
+      <p>Comment</p>
       <div>
         <textarea id='comment-text' rows='6'></textarea>
       </div>
